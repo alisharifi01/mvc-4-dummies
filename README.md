@@ -3,7 +3,7 @@ PHP MVC 4 Dummies
 
 A Simple PHP MVC Framewok
 
-### make a Hello World
+### make Hello World
 
 edit `/routes.php`
 
@@ -11,7 +11,7 @@ edit `/routes.php`
 Router::get("/","HomeController","index");
 ```
 
-in `/controllers` folder make `HomeController.php` 
+in `/controllers` make `HomeController.php` 
 
 ```php
 class HomeController extends BaseController
