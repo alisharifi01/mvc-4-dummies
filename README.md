@@ -5,24 +5,24 @@ A Simple PHP MVC Framewok
 
 ### make a Hello World
 
-edit `routes.php`:
+edit `/routes.php`
 
 ```php
 Router::get("/","HomeController","index");
 ```
 
-in controllers folder make HomeController 
+in `/controllers` folder make `HomeController.php` 
 
 ```php
-	class HomeController extends BaseController
-  {
+class HomeController extends BaseController
+{
       public function index(){
           $this->templateEngine->assign('greeting','hello world');
           $this->templateEngine->display('home.tpl');
       }  
-  }
+}
 ```
-in views/templates make  home.tpl 
+in `/views/templatess` make  `home.tpl` 
 
 ```html
 <!DOCTYPE html>
