@@ -35,7 +35,7 @@ in `/views/templatess` make  `home.tpl`
     <div id="container">
         <div style="text-align: center">
         <h1>{$greeting}</h1>
-    </div>
+        </div>
     </div>
 </body>
 </html>
