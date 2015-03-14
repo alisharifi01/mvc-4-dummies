@@ -22,7 +22,7 @@ class HomeController extends BaseController
       }  
 }
 ```
-in `/views/templatess` make  `home.tpl` 
+in `/views/templates` make  `home.tpl` 
 
 ```html
 <!DOCTYPE html>
