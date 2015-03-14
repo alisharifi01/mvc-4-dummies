@@ -32,11 +32,7 @@ in `/views/templatess` make  `home.tpl`
     <title>hello world</title>
 </head>
 <body>
-    <div id="container">
-        <div style="text-align: center">
-            <h1>{$greeting}</h1>
-        </div>
-    </div>
+    <h1>{$greeting}</h1>
 </body>
 </html>
 ```
