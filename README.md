@@ -1,7 +1,7 @@
 PHP MVC 4 Dummies
 ===========
 
-A Simple PHP MVC Framewok
+A Simple PHP MVC Framework
 
 ### make Hello World
 
