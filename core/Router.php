@@ -18,7 +18,7 @@ class Router{
         if($path == $this->uri AND $_SERVER['REQUEST_METHOD'] == "GET"){
             $this->execute($path,$controller,$method);
         }else{
-            //throw exception in debug mode
+            //TODO throw exception 
         }
     }
     private function execute($path,$controller,$method){
@@ -30,7 +30,7 @@ class Router{
         if($path == $this->uri AND $_SERVER['REQUEST_METHOD'] == "POST"){
             $this->execute($path,$controller,$method);
         }else{
-            //throw exception in debug mode
+            //TODO throw exception 
         }
 
     }
