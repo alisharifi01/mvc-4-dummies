@@ -39,7 +39,7 @@ ini_set('sendmail_from', SENDMAIL_FROM);
 
 // By default we don't log errors to a file
 define('LOG_ERRORS', true);
-define('LOG_ERRORS_FILE', 'errors_log.txt'); // Windows
+define('LOG_ERRORS_FILE', 'error-logs.txt'); // Windows
  //define('LOG_ERRORS_FILE', '/home/username/tshirtshop/errors.log'); // Linux
 define('SITE_GENERIC_ERROR_MESSAGE','Something is wrong ... Please try later');
 
