@@ -1,38 +1,80 @@
 <?php
 
 
-class Router{
-    private static $instance;
-    private $uri;
-    private  $templateEngine;
-    public function __construct(){
-        $this->templateEngine = new TemplateEngine();
-        $this->setPath();
+class Router
+{
+    private $pathOnURI,
+            $templateEngine;
+    public function __construct()
+    {
+        $this->getPath();
     }
-    public function setPath(){
-        $phpSelf = $_SERVER['PHP_SELF'];
-        $rootPath = str_replace("index.php","",$phpSelf);
-        $this->uri = str_replace($rootPath,"/",$_SERVER['REQUEST_URI']);
+
+    private function getPath()
+    {
+        $phpSelf = str_replace("index.php", "", $_SERVER['PHP_SELF']);
+        $completePathOnURI = str_replace($phpSelf, "/", $_SERVER['REQUEST_URI']);
+        $explodedCompletePathOnURI = explode("?",$completePathOnURI);
+        $this->pathOnURI = $explodedCompletePathOnURI[0];
     }
-    public function get($path,$controller,$method){
-        if($path == $this->uri AND $_SERVER['REQUEST_METHOD'] == "GET"){
-            $this->execute($path,$controller,$method);
-        }else{
-            //TODO throw exception 
-        }
+
+    private function callWithAnonymouseFunction($action){
+        $action();
     }
-    private function execute($path,$controller,$method){
-        $controller = new $controller();
-        $controller->setTemplateEngine($this->templateEngine);
+    private function callWithControllerMethod($controllerClassName,$method){
+
+        Container::register($controllerClassName,function() use(&$controllerClassName) //registering a dependency on the fly
+        {
+            //set template engine
+            $templateEngineClassName = ucfirst(TEMPLATE_ENGINE) . "TemplateEngine";
+            $templateEngineObj = new $templateEngineClassName();
+            $templateEngineObj->set('SITE_ROOT_URL', SITE_ROOT_URL);
+            //
+            $controller = new $controllerClassName();
+            $controller->setTemplateEngine($templateEngineObj);
+            return $controller;
+        });
+
+        $controller = Container::getInstance($controllerClassName);
         $controller->$method();
     }
-    public function post($path,$controller,$method){
-        if($path == $this->uri AND $_SERVER['REQUEST_METHOD'] == "POST"){
-            $this->execute($path,$controller,$method);
-        }else{
-            //TODO throw exception 
+    public function get()
+    {
+        $args = func_get_args();
+        $path = $args[0];
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            if ($path == $this->pathOnURI) {
+                if( count($args) == 2){
+                    $action = $args[1];
+                    $this->callWithAnonymouseFunction($action);
+                }else if( count($args) == 3){
+                    $controllerClassName = $args[1];
+                    $method = $args[2];
+                    $this->callWithControllerMethod($controllerClassName,$method);
+                }
+            }
         }
+
+        //
 
     }
 
-}
+
+    public function post($path, $action)
+    {
+        $args = func_get_args();
+        $path = $args[0];
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if ($path == $this->pathOnURI) {
+                if( count($args) == 2){
+                    $action = $args[1];
+                    $this->callWithAnonymouseFunction($action);
+                }else if( count($args) == 3){
+                    $controllerClassName = $args[1];
+                    $method = $args[2];
+                    $this->callWithControllerMethod($controllerClassName,$method);
+                }
+            }
+        }
+    }
+} 

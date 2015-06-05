@@ -1,10 +1,9 @@
 <?php
 
-  class HomeController extends BaseController
-  {
-      public function index(){
-          $this->templateEngine->assign('greeting','PHP MVC 4 Dummies');
-          $this->templateEngine->display('home.tpl');
-      }  
-  }
-?>
+
+class HomeController extends PagesFromMasterTpl{
+    public function index(){
+        $this->templateEngine->set('shops',$this->shops);
+        $this->templateEngine->display('front/index.tpl');
+    }
+} 

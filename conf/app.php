@@ -1,10 +1,9 @@
 <?php
-/*
- * created by Keramatifar
- * Edited by Ali Sharifi 93-12-19
- */
-session_start();
+
 include 'messages.php';
+define('SITE_ROOT_URL',defineSiteRootUrl());
+//template engine
+define("TEMPLATE_ENGINE","smarty");
 // DIR configs
 define("SITE_ROOT", dirname(dirname(__FILE__)));
 define("VIEW_DIR", SITE_ROOT . '/views/');
@@ -21,9 +20,10 @@ define('COMPILE_DIR', VIEW_DIR . 'templates_c');
 //DB configs
 define('DB_PERSISTENCY', 'true');
 define('DB_SERVER', 'localhost');
+define('DB_TYPE','mysql');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
-define('DB_DATABASE', 'simple_php_mvc');
+define('DB_DATABASE', 'mvc_4_dummies');
 define('PDO_DSN', 'mysql:host=' . DB_SERVER . ';dbname=' . DB_DATABASE);
 
 define('IS_WARNING_FATAL', true);
@@ -41,6 +41,6 @@ ini_set('sendmail_from', SENDMAIL_FROM);
 define('LOG_ERRORS', true);
 define('LOG_ERRORS_FILE', 'error-logs.txt'); // Windows
  //define('LOG_ERRORS_FILE', '/home/username/tshirtshop/errors.log'); // Linux
-define('SITE_GENERIC_ERROR_MESSAGE','Something is wrong ... Please try later');
+define('SITE_GENERIC_ERROR_MESSAGE','internete shoma kharab ast');
 
 ?>

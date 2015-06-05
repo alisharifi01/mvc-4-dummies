@@ -7,10 +7,12 @@ spl_autoload_register(function ($class) {
     $dirs = array(
         'biz',
         'controllers',
+        'controllers/front',
+        'controllers/admin',
         'core',
-        'core/helper',
-        'lib',
-        'model');
+        'core/helpers',
+        'libs',
+        'models');
 
     foreach ($dirs as $dir) {
         $filename = "$dir/" . $class . ".php";
@@ -21,3 +23,12 @@ spl_autoload_register(function ($class) {
     }
     return false;
 });
+
+Container::init();
+
+
+
+
+
+
+

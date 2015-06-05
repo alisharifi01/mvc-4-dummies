@@ -1,115 +1,112 @@
 <?php
-/*
- * added by Keramatifar
- * Edited by Ali Sharifi 93-12-20
- */
-// Class providing generic data access functionality
-class MysqlDBHandler
+
+
+
+class MysqlDBHandler implements DBHandler
 {
-    private static $connection;
-    private function __construct(){}
-    private static function convertPersianWord($item)
+    private  $connection;
+    private  function convertPersianWord($item)
     {
         return str_replace(array('ي', 'ك'), array('ی', 'ک'), $item);
     }
-    private static function convertPersianWords($arrayParams)
+    private  function convertPersianWords($arrayParams)
     {
         foreach ($arrayParams as $key => $value) {
-            $arrayParams[$key] = self::convertPersianWord($value);
+            $arrayParams[$key] = $this->convertPersianWord($value);
         }
         return $arrayParams;
     }
-    public static function open()
+    public  function open()
     {
         // Create a database connection only if one doesn?t already exist
-        if (!isset(self::$connection)) {
+        if (!isset($this->connection)) {
             // Execute code catching potential exceptions
             try {
                 // Create a new PDO class instance
-                self::$connection =
+                $this->connection =
                     new PDO(PDO_DSN, DB_USERNAME, DB_PASSWORD,
                         array(PDO::ATTR_PERSISTENT => DB_PERSISTENCY, PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
                 // Configure PDO to throw exceptions
-                self::$connection->setAttribute(PDO::ATTR_ERRMODE,
+                $this->connection->setAttribute(PDO::ATTR_ERRMODE,
                     PDO::ERRMODE_EXCEPTION);
             } catch (PDOException $pdoException) {
-                self::close();
+                $this->close();
                 throw $pdoException;
             }
         }
     }
-    public static function close()
+    public  function close()
     {
-        self::$connection = null;
+        $this->connection = null;
     }
     // Wrapper method for PDOStatement::execute()
-    public static function execute($sqlQuery, $params = null)
+    public  function execute($sqlQuery, $params = null)
     {
-        self::open();
+        $this->open();
         try {
-            $preparedToExecute = self::$connection->prepare('SET NAMES UTF8;' . $sqlQuery);
+            $preparedToExecute = $this->connection->prepare('SET NAMES UTF8;' . $sqlQuery);
             $result = $preparedToExecute->execute($params);
-            self::close();
+            $this->close();
             if ($result == 1) return true;
             return false;
         }
         catch (PDOException $pdoException) {
-            self::close();
+            $this->close();
             throw $pdoException;
         }
     }
 
 
-    // SELECT * FROM users
+    // SELECT * FROM users WHERE id > 5
     // Wrapper method for PDOStatement::fetchAll()
-    public static function getAll($sqlQuery, $params = null,
-                                  $fetchStyle = PDO::FETCH_ASSOC)
+    public function getAll($sqlQuery, $params = null)
     {
-        self::open();
+        $fetchStyle = PDO::FETCH_ASSOC;
+        $this->open();
         $result = null;
         try {
-            $preparedToExecute = self::$connection->prepare($sqlQuery);
+            $preparedToExecute = $this->connection->prepare($sqlQuery);
             $preparedToExecute->execute($params);
             $result = $preparedToExecute->fetchAll($fetchStyle);
         }
         catch (PDOException $pdoException) {
-            self::close();
+            $this->close();
             throw $pdoException;
         }
         return $result;
     }
     // SELECT * FROM users WHERE id = 1;
     // Wrapper method for PDOStatement::fetch()
-    public static function getRow($sqlQuery, $params = null,
-                                  $fetchStyle = PDO::FETCH_ASSOC)
+    public  function getRow($sqlQuery, $params = null)
     {
+        $fetchStyle = PDO::FETCH_ASSOC;
         $result = array();
         try {
-            self::open();
-            $preparedToExecute= self::$connection->prepare($sqlQuery);
+            $this->open();
+            $preparedToExecute= $this->connection->prepare($sqlQuery);
             $preparedToExecute->execute($params);
             $result = $preparedToExecute->fetch($fetchStyle);
         }
         catch (PDOException $pdoException) {
-            self::close();
+            $this->close();
             throw $pdoException;
         }
         return $result;
     }
     //SELECT username FROM users WHERE id = 1
     // Return the first column value from a row
-    public static function getOne($sqlQuery, $params = null)
+    public  function getOne($sqlQuery, $params = null)
     {
         $result = null;
         try {
-            self::open();
-            $preparedToExecute = self::$connection->prepare($sqlQuery);
-            $state_handlent_handler->execute($params);
-            $result = $statement_handler->fetch(PDO::FETCH_NUM);
+            $this->open();
+            $preparedToExecute = $this->connection->prepare($sqlQuery);
+            $preparedToExecute->execute($params);
+            $result = $preparedToExecute->fetch(PDO::FETCH_NUM);
             $result = $result[0];
         }
         catch (PDOException $pdoException) {
-            self::close();
+            $this->close();
             throw $pdoException;
         }
         return $result;

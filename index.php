@@ -1,6 +1,18 @@
 <?php
-include 'conf/app.php';
-include 'core/autoload.php';
-ErrorHandler::SetHandler(ERROR_TYPES);
-include 'routes.php';
-?>
+
+    session_start();
+
+    include 'core/helpers/functions.php';
+    include 'conf/app.php';
+    include 'core/autoload.php';
+
+    ErrorHandler::setHandler();
+
+    include 'routes.php';
+
+
+
+
+
+
+

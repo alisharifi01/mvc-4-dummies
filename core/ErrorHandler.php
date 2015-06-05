@@ -107,7 +107,6 @@ class ErrorHandler
         // If the error is nonfatal ...
         {
             // Show message only if DEBUGGING is true
-            
             if (DEBUGGING == true)
             echo '<div class="error_box"><pre>' . $error_message . '</pre></div>';
         }
