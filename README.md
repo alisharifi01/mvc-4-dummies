@@ -17,7 +17,7 @@ in `/controllers` make `HomeController.php`
 class HomeController extends BaseController
 {
       public function index(){
-          $this->templateEngine->assign('greeting','hello world');
+          $this->templateEngine->set('greeting','hello world');
           $this->templateEngine->display('home.tpl');
       }  
 }
