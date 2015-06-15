@@ -1,0 +1,81 @@
+
+ERRNO: 8
+TEXT: Undefined index: file
+LOCATION: C:\xampp\htdocs\mvc-4-dummies\core\ErrorHandler.php, line 38, at June 15, 2015, 10:35 am
+
+<hr>
+
+<hr>
+Showing backtrace:
+
+
+<hr>call_user_func(Array[2], "8", "Undefined index: file", "C:\xampp\htdocs\mvc-4-dummies\core\ErrorHandler.php", "38", Array[7])\n\n<br> # line 1541\n<br> file: C:\xampp\htdocs\mvc-4-dummies\libs\smarty\Smarty.class.php
+
+<hr>Smarty.mutingErrorHandler("8", "Undefined index: file", "C:\xampp\htdocs\mvc-4-dummies\core\ErrorHandler.php", "38", Array[7])\n\n<br> # line   38\n<br> file: C:\xampp\htdocs\mvc-4-dummies\core\ErrorHandler.php
+
+<hr>ErrorHandler.exceptionHandler(Object: PDOException)\n\n<br> # line    0\n<br> file: unknown
+
+<hr>
+
+
+ERRNO: 8
+TEXT: Undefined index: line
+LOCATION: C:\xampp\htdocs\mvc-4-dummies\core\ErrorHandler.php, line 39, at June 15, 2015, 10:35 am
+
+<hr>
+
+<hr>
+Showing backtrace:
+
+
+<hr>call_user_func(Array[2], "8", "Undefined index: line", "C:\xampp\htdocs\mvc-4-dummies\core\ErrorHandler.php", "39", Array[7])\n\n<br> # line 1541\n<br> file: C:\xampp\htdocs\mvc-4-dummies\libs\smarty\Smarty.class.php
+
+<hr>Smarty.mutingErrorHandler("8", "Undefined index: line", "C:\xampp\htdocs\mvc-4-dummies\core\ErrorHandler.php", "39", Array[7])\n\n<br> # line   39\n<br> file: C:\xampp\htdocs\mvc-4-dummies\core\ErrorHandler.php
+
+<hr>ErrorHandler.exceptionHandler(Object: PDOException)\n\n<br> # line    0\n<br> file: unknown
+
+<hr>
+
+
+ERRNO: 256
+TEXT: Uncaught exception 'PDOException' 
+<br>MESSAGE: 'SQLSTATE[HY000] [1049] Unknown database 'mvc_4_dummies'' 
+<br>LOCATION: C:\xampp\htdocs\mvc-4-dummies\core\MysqlDBHandler.php:28
+Stack trace:
+#0 C:\xampp\htdocs\mvc-4-dummies\core\MysqlDBHandler.php(28): __construct(string, string, string, array)
+#1 C:\xampp\htdocs\mvc-4-dummies\core\MysqlDBHandler.php(65): open()
+#2 C:\xampp\htdocs\mvc-4-dummies\core\DB.php(18): getAll(string, NULL)
+#3 C:\xampp\htdocs\mvc-4-dummies\models\BaseModel.php(9): getAll(string)
+#4 C:\xampp\htdocs\mvc-4-dummies\controllers\PagesFromMasterTpl.php(8): all()
+#5 C:\xampp\htdocs\mvc-4-dummies\controllers\PagesFromMasterTpl.php(12): getShops()
+#6 C:\xampp\htdocs\mvc-4-dummies\core\Router.php(33): __construct()
+#7 (): {closure}()
+#8 C:\xampp\htdocs\mvc-4-dummies\core\Container.php(37): call_user_func(object)
+#9 C:\xampp\htdocs\mvc-4-dummies\core\Router.php(38): getInstance(string)
+#10 C:\xampp\htdocs\mvc-4-dummies\core\Router.php(53): callWithControllerMethod(string, string)
+#11 C:\xampp\htdocs\mvc-4-dummies\core\RouterHelper.php(18): get(string, string, string)
+#12 C:\xampp\htdocs\mvc-4-dummies\routes.php(7): get(string, string, string)
+#13 C:\xampp\htdocs\mvc-4-dummies\index.php(11): include(string)
+#14 {main}
+  thrown in C:\xampp\htdocs\mvc-4-dummies\core\MysqlDBHandler.php on line 28
+LOCATION: C:\xampp\htdocs\mvc-4-dummies\core\ErrorHandler.php, line 61, at June 15, 2015, 10:35 am
+
+<hr>
+
+<hr>
+Showing backtrace:
+
+
+<hr>call_user_func(Array[2], "256", "Uncaught exception 'PDOException' 
+&lt;br&gt;MESSAGE: 'SQLSTATE[HY000]...", "C:\xampp\htdocs\mvc-4-dummies\core\ErrorHandler.php", "61", Array[7])\n\n<br> # line 1541\n<br> file: C:\xampp\htdocs\mvc-4-dummies\libs\smarty\Smarty.class.php
+
+<hr>Smarty.mutingErrorHandler("256", "Uncaught exception 'PDOException' 
+&lt;br&gt;MESSAGE: 'SQLSTATE[HY000]...", "C:\xampp\htdocs\mvc-4-dummies\core\ErrorHandler.php", "61", Array[7])\n\n<br> # line    0\n<br> file: unknown
+
+<hr>trigger_error("Uncaught exception 'PDOException' 
+&lt;br&gt;MESSAGE: 'SQLSTATE[HY000]...", "256")\n\n<br> # line   61\n<br> file: C:\xampp\htdocs\mvc-4-dummies\core\ErrorHandler.php
+
+<hr>ErrorHandler.exceptionHandler(Object: PDOException)\n\n<br> # line    0\n<br> file: unknown
+
+<hr>
+

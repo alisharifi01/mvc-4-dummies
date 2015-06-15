@@ -1,9 +1,10 @@
 <?php
 
 
-class HomeController extends PagesFromMasterTpl{
+class HomeController extends BaseController{
     public function index(){
-        $this->templateEngine->set('shops',$this->shops);
+
+        $this->templateEngine->set('greeting','WELCOME TO MVC 4 DUMMIES FRAMEWORK');
         $this->templateEngine->display('front/index.tpl');
     }
 } 
